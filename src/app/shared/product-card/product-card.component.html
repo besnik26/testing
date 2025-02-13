@@ -1,0 +1,18 @@
+<div class="product-div">
+    <img [src]="product.image" alt="Product Image">
+    <div>
+        <div>{{product.title}}</div>
+
+        <p>
+            {{product.description.substring(0,100)}}...
+        </p>
+
+        <div class="price">
+            <span>{{product.price }}$</span>
+        </div>
+
+        <button class="btn add" (click)="addToCart(product)">Add to cart</button>
+        <button class="btn view">View Product</button>
+
+    </div>
+</div>

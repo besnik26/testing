@@ -1,0 +1,13 @@
+<!-- <div class="products-cover">
+    @for (item of products$ | async; track $index) {
+    <p>{{item.title}}</p>
+    }
+
+</div> -->
+<div class="product-wrapper">
+
+    @for (item of products$ | async; track $index) {
+    <app-product-card class="product" [product]="item" (handleAdd)="addItemToCart($event)" />
+    }
+
+</div>

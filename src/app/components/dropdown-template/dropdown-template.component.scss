@@ -1,0 +1,58 @@
+.cover {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    .dropdown-div {
+        max-width: 500px;
+        width: 100%;
+        padding: 40px;
+        background-color: rgb(243, 240, 240);
+
+        // .form-select {
+        //     border: 1px solid black;
+
+
+        //     // &:hover {
+        //     //     background-color: gainsboro;
+        //     // }
+
+        //     // &:focus {
+        //     //     // box-shadow: none;
+        //     //     box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .25);
+        //     // }
+
+        //     // option {
+        //     //     &:hover {
+        //     //         background-color: gainsboro !important;
+        //     //     }
+        //     // }
+        // }
+
+        .selectDropdown {
+            ::ng-deep .ng-select-container {
+                border: 1px solid black;
+                box-shadow: none;
+            }
+
+            ::ng-deep .ng-dropdown-panel {
+                border: 1px solid black;
+
+                .ng-option-marked {
+                    background-color: white;
+                }
+
+                .ng-option-selected {
+                    background-color: gainsboro;
+                }
+
+                .ng-option {
+                    &:hover {
+                        background-color: gainsboro;
+                    }
+                }
+            }
+
+        }
+    }
+}

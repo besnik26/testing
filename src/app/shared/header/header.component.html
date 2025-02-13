@@ -1,0 +1,11 @@
+<div class="main">
+    <h5 routerLink="/home">
+        Counter:{{count$ | async}}
+    </h5>
+    <h5 routerLink="/products">Products</h5>
+
+    <h5 routerLink="/animations">Animations</h5>
+
+    <h5 routerLink="/cart">Cart: {{(products$ | async)?.length}}</h5>
+    <button (click)="toggleTheme()">Toggle Theme</button>
+</div>

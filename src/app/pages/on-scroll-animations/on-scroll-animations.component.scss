@@ -1,0 +1,36 @@
+.cover {
+    display: flex;
+    justify-content: center;
+
+
+    .cover-child {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 1500px;
+        width: 100%;
+    }
+
+    .container {
+        width: 100%;
+        display: flex;
+        column-gap: 20px;
+        margin: 200px 0;
+        padding: 0;
+
+        .box {
+            width: 100%;
+            height: 300px;
+        }
+
+        .box-1 {
+            max-width: 30%;
+            background-color: red;
+        }
+
+        .box-2 {
+            max-width: 70%;
+            background-color: teal;
+        }
+    }
+}

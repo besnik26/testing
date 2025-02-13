@@ -1,0 +1,59 @@
+.main {
+    display: flex;
+    justify-content: center;
+    // background-color: gainsboro;
+    margin: 100px 0px;
+
+    .custom-container {
+        max-width: 400px;
+        width: 100%;
+
+        .form-div {
+            border: 1px solid black;
+            padding: 20px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            background-color: gainsboro;
+            transition: all 0.5s ease;
+            animation: zoomIn 0.5s ease-out forwards;
+            color: black;
+
+            .field-div {
+                display: flex;
+                flex-direction: column;
+                margin: 5px 0px;
+
+                label {
+                    margin-bottom: 5px;
+                }
+
+                input {
+                    height: 35px;
+                    padding: 0 10px;
+                }
+            }
+
+            button {
+                margin-top: 15px;
+                border: none;
+                background-color: green;
+                color: white;
+                cursor: pointer;
+                height: 35px;
+            }
+        }
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}

@@ -1,0 +1,33 @@
+<div class="main">
+    <div class="custom-container">
+        <form [formGroup]="form">
+            @if (!showThanks) {
+            <div class="form-div">
+                <h4 class="text-center">Form</h4>
+                <div class="field-div">
+                    <label for="name">Name</label>
+                    <input type="text" formControlName="name" id="name">
+                </div>
+
+                <div class="field-div">
+                    <label for="surname">Surname</label>
+                    <input type="text" formControlName="surname" id="surname">
+                </div>
+
+                <button type="button" (click)="onSubmit()">Submit</button>
+            </div>
+            }
+            @else {
+            <div class="form-div">
+                <h2 class="text-center">Thank You!</h2>
+                <h4 class="text-center">Form has been submitted!</h4>
+            </div>
+            }
+
+        </form>
+    </div>
+</div>
+@if(showModal){
+<app-global-modal (closeModal)="closeModal()" (resetForm)="resetForm()" (showThanks)="handleShowThanks()"
+    [formData]="data"></app-global-modal>
+}

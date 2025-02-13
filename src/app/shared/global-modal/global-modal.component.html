@@ -1,0 +1,19 @@
+<div class="overlay">
+    <form [formGroup]="form">
+        <div class="modal-div">
+            <h5 class="text-center">Is the data you entered correct ?</h5>
+            <div class="form-field">
+                <label for="name">Name</label>
+                <input type="text" id="name" formControlName="name">
+            </div>
+            <div class="form-field">
+                <label for="surname">Surname</label>
+                <input type="text" id="surname" formControlName="surname">
+            </div>
+            <div class="button-div">
+                <button class="btn close" type="button" (click)="onClose()">Close</button>
+                <button class="btn submit" type="button" (click)="onSubmit()">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
