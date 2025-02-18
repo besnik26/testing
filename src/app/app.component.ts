@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './shared/header/header.component';
 import { ThemeService } from './shared/services/theme.service';
+
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,18 @@ import { ThemeService } from './shared/services/theme.service';
 })
 export class AppComponent {
   title = 'testing';
+  showScroll = false;
 
   constructor(private themeService: ThemeService) { }
+
+
+  @HostListener('window:scroll')
+  onScroll(): void {
+    this.showScroll = window.scrollY > 300;
+  }
+
+  scrollToTop(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
 }

@@ -1,2 +1,6 @@
 <app-header></app-header>
 <router-outlet></router-outlet>
+@if (showScroll) {
+<button class="scroll-to-top" (click)="scrollToTop()"><img src="../assets/images/icons/arrow-up.svg"
+        alt="arrow-up"></button>
+}
