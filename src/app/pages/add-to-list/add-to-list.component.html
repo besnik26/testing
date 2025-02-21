@@ -1,0 +1,34 @@
+<div class="main container-fluid">
+    <div class="custom-container container-fluid">
+        <h2 class="text-center">Add to List</h2>
+        <form [formGroup]="myForm">
+            <div class="form-cover container-fluid">
+                <div class="form-div container-fluid">
+                    <input type="text" placeholder="Type here:" formControlName="input">
+                    <button (click)="handleAdd()">Add</button>
+                </div>
+
+                <div class="list-div">
+                    @for (item of listArray; track $index) {
+                        @if (listArray.length != 0) {
+                            <div class="list-item">
+                                <p>{{item}}</p>
+        
+                                <div>
+                                    <button>X</button>
+                                </div>
+                            </div>
+                        }
+                    }
+                    @if(listArray.length === 0){
+                        <p>
+                            No items added to the list yet.
+                        </p>
+                    }
+
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

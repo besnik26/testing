@@ -1,0 +1,48 @@
+.main{
+    display: flex;
+    justify-content: center;
+    .custom-container{
+        max-width: 1500px;
+        margin-top: 100px;
+        .form-cover{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 50px;
+            .form-div{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                column-gap: 15px;
+                max-width: 600px;
+                input{
+                    border: none;
+                    border-radius: 5px;
+                    padding: 0 10px;
+                    height: 45px;
+                    width: 400px;
+                }
+                button{
+                    background-color: #007bff;
+                    height: 45px;
+                    padding: 0 25px;
+                    border-radius: 5px;
+                    border: none;
+                    cursor: pointer;
+                    color: white;
+                }
+            }
+            .list-div{
+                display: flex;
+                flex-direction: column;
+                margin-top: 100px;
+                .list-item{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                }
+            }
+        }
+    }
+}

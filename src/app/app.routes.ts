@@ -23,5 +23,10 @@ export const routes: Routes = [
         path: 'animations',
         loadComponent: () =>
             import('./pages/on-scroll-animations/on-scroll-animations.component').then((a) => a.OnScrollAnimationsComponent)
-    }
+    },
+    {
+        path: 'add-to-list',
+        loadComponent: () =>
+            import('./pages/add-to-list/add-to-list.component').then((a) => a.AddToListComponent)
+    },
 ];
