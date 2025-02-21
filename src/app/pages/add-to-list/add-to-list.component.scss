@@ -36,11 +36,21 @@
             .list-div{
                 display: flex;
                 flex-direction: column;
+                justify-content: center;
                 margin-top: 100px;
+                min-height: 100px;
+                background-color: gray;
+                border-radius: 20px;
+                width: 100%;
+                max-width: 800px;
                 .list-item{
                     display: flex;
                     flex-direction: row;
                     justify-content: space-between;
+                    padding: 0 16px;
+                    li{
+                        font-size: 18px;
+                    }
                 }
             }
         }
