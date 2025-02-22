@@ -31,4 +31,7 @@ export class AddToListComponent implements OnInit{
       console.log(this.listArray);
     }
   }
+  handleDelete(index:number){
+    this.listArray.splice(index, 1);
+  }
 }

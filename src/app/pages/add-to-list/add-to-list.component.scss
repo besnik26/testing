@@ -39,17 +39,28 @@
                 justify-content: center;
                 margin-top: 100px;
                 min-height: 100px;
-                background-color: gray;
+                background-color: rgb(88, 88, 88);
                 border-radius: 20px;
                 width: 100%;
-                max-width: 800px;
+                max-width: 700px;
                 .list-item{
                     display: flex;
                     flex-direction: row;
                     justify-content: space-between;
+                    align-items: center;
                     padding: 0 16px;
                     li{
-                        font-size: 18px;
+                        font-size: 21px;
+                        max-width: 500px;
+                    }
+                    button{
+                        border: none;
+                        height: 30px;
+                        width: 30px;
+                        background-color: red;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        color: white;
                     }
                 }
             }
