@@ -4,27 +4,27 @@
         <form [formGroup]="myForm">
             <div class="form-cover container-fluid">
                 <div class="form-div container-fluid">
-                    <input type="text" placeholder="Type here:" formControlName="input">
+                    <input type="text" placeholder="Type here:" formControlName="input" (keydown.enter)="handleAdd()">
                     <button (click)="handleAdd()">Add</button>
                 </div>
 
                 <div class="list-div">
                     @for (item of listArray; track $index) {
-                        @if (listArray.length != 0) {
-                            <div class="list-item">
-                                <ul>
-                                    <li>{{item}}</li>
-                                </ul>
-                                
-                                <button (click)="handleDelete($index)">X</button>
-                                
-                            </div>
-                        }
+                    @if (listArray.length != 0) {
+                    <div class="list-item" @listAnimation>
+                        <ul>
+                            <li #listItems (click)="toggleDecoration($index)">{{item}}</li>
+                        </ul>
+
+                        <button (click)="handleDelete($index)">X</button>
+
+                    </div>
+                    }
                     }
                     @if(listArray.length === 0){
-                        <h4 class="text-center">
-                            No items added to the list yet.
-                        </h4>
+                    <h4 class="text-center">
+                        No items added to the list yet.
+                    </h4>
                     }
 
                 </div>
