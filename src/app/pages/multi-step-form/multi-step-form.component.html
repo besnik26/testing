@@ -1,0 +1,35 @@
+<div class="container-fluid main">
+    <div class="custom-container">
+        <div class="form-div">
+            <form>
+                <div class="steps-container">
+
+                </div>
+                <div class="form-content">
+                    <h3>Enter values below:</h3>
+                    @if (step === 1) {
+                    <input type="text">
+                    }
+                    @if (step === 2) {
+                    <input type="text">
+                    }
+                    @if (step === 3) {
+                    <input type="text">
+                    }
+
+                    <div class="button-container">
+                        @if (step !== 1) {
+                        <button>
+                            Back
+                        </button>
+                        }
+                        <button>
+                            Next
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

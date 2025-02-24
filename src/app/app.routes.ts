@@ -29,4 +29,10 @@ export const routes: Routes = [
         loadComponent: () =>
             import('./pages/add-to-list/add-to-list.component').then((a) => a.AddToListComponent)
     },
+
+    {
+        path: 'multi-step-form',
+        loadComponent: () =>
+            import('./pages/multi-step-form/multi-step-form.component').then((a) => a.MultiStepFormComponent)
+    },
 ];

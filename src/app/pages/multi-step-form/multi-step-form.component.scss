@@ -1,0 +1,20 @@
+.main {
+    display: flex;
+    justify-content: center;
+
+    .custom-container {
+        width: 100%;
+        max-width: 1200px;
+        display: flex;
+        justify-content: center;
+
+        .form-div {
+            width: 100%;
+            max-width: 700px;
+            background-color: whitesmoke;
+            border: 1px solid black;
+            border-radius: 35px;
+            color: black;
+        }
+    }
+}
