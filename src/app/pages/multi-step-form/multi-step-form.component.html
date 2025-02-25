@@ -1,17 +1,90 @@
 <div class="container-fluid main">
     <div class="custom-container">
         <div class="form-div">
-            <form>
+            <form [formGroup]="myForm">
                 <div class="steps-container">
 
                 </div>
                 <div class="form-content">
-                    <h3>Enter values below:</h3>
+                    <h4 class="text-center">Enter values below:</h4>
                     @if (step === 1) {
-                    <input type="text">
+                    <div formGroupName="personalInfo">
+                        <div class="row g-2">
+                            <div class="col-12 col-sm-6">
+                                <label for="name">Name</label>
+                                <input type="text" class="input-style" formControlName="name" id="name">
+                                @if (myForm.get('personalInfo.name')?.touched &&
+                                myForm.get('personalInfo.name')?.invalid) {
+                                <small>This field is required</small>
+                                }
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <label for="surname">Surname</label>
+                                <input type="text" class="input-style" formControlName="surname" id="surname">
+                                @if (myForm.get('personalInfo.surname')?.touched &&
+                                myForm.get('personalInfo.surname')?.invalid) {
+                                <small>This field is required</small>
+                                }
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <label for="email">Email</label>
+                                <input type="text" class="input-style" formControlName="email" id="email">
+                                @if (myForm.get('personalInfo.email')?.touched &&
+                                myForm.get('personalInfo.email')?.invalid) {
+                                <small>This field is required</small>
+                                }
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <label for="phone">Phone</label>
+                                <input type="number" class="input-style" formControlName="phone" id="phone">
+                                @if (myForm.get('personalInfo.phone')?.touched &&
+                                myForm.get('personalInfo.phone')?.invalid) {
+                                <small>This field is required</small>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+
                     }
                     @if (step === 2) {
-                    <input type="text">
+                    <div formGroupName="addressInfo">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <label for="country">Country</label>
+                                <input type="text" class="input-style" formControlName="country" id="country">
+                                @if (myForm.get('addressInfo.country')?.touched &&
+                                myForm.get('addressInfo.country')?.invalid) {
+                                <small>This field is required</small>
+                                }
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <label for="city">City</label>
+                                <input type="text" class="input-style" formControlName="city" id="city">
+                                @if (myForm.get('addressInfo.city')?.touched &&
+                                myForm.get('addressInfo.city')?.invalid) {
+                                <small>This field is required</small>
+                                }
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <label for="street">Street</label>
+                                <input type="text" class="input-style" formControlName="street" id="street">
+                                @if (myForm.get('addressInfo.street')?.touched &&
+                                myForm.get('addressInfo.street')?.invalid) {
+                                <small>This field is required</small>
+                                }
+                            </div>
+                        </div>
+                    </div>
                     }
                     @if (step === 3) {
                     <input type="text">
@@ -19,12 +92,16 @@
 
                     <div class="button-container">
                         @if (step !== 1) {
-                        <button>
+                        <button class="back-button" (click)="onBack()">
                             Back
                         </button>
                         }
-                        <button>
+                        <button class="next-button" (click)="onNext()">
+                            @if(step !== 3){
                             Next
+                            }@else {
+                            Submit
+                            }
                         </button>
                     </div>
 
