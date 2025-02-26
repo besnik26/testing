@@ -31,6 +31,11 @@
                     width: 100%;
                     padding: 0 10px;
                     border: 1px solid black;
+                    outline: none;
+                }
+
+                .valid-input {
+                    border: 1px solid rgb(0, 172, 0);
                 }
 
                 .button-container {
@@ -59,6 +64,31 @@
 
                 small {
                     color: red;
+                }
+
+                ::ng-deep {
+                    .custom-calendar {
+                        span {
+                            width: 100%;
+                        }
+
+                        input {
+                            border: 1px solid black;
+                            width: 100%;
+                            box-shadow: none;
+                            padding: 0 10px;
+                            border-radius: 5px;
+                            height: 35px;
+                        }
+                    }
+
+                    .valid-calendar {
+
+                        input {
+                            border: 1px solid rgb(0, 172, 0);
+
+                        }
+                    }
                 }
             }
         }

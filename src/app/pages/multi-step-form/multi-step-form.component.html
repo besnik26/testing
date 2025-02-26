@@ -12,7 +12,8 @@
                         <div class="row g-2">
                             <div class="col-12 col-sm-6">
                                 <label for="name">Name</label>
-                                <input type="text" class="input-style" formControlName="name" id="name">
+                                <input type="text" [ngClass]="{'valid-input': myForm.get('personalInfo.name')?.valid}"
+                                    class="input-style" formControlName="name" id="name">
                                 @if (myForm.get('personalInfo.name')?.touched &&
                                 myForm.get('personalInfo.name')?.invalid) {
                                 <small>This field is required</small>
@@ -20,7 +21,9 @@
                             </div>
                             <div class="col-12 col-sm-6">
                                 <label for="surname">Surname</label>
-                                <input type="text" class="input-style" formControlName="surname" id="surname">
+                                <input type="text"
+                                    [ngClass]="{'valid-input': myForm.get('personalInfo.surname')?.valid}"
+                                    class="input-style" formControlName="surname" id="surname">
                                 @if (myForm.get('personalInfo.surname')?.touched &&
                                 myForm.get('personalInfo.surname')?.invalid) {
                                 <small>This field is required</small>
@@ -30,7 +33,8 @@
                         <div class="row">
                             <div class="col-12">
                                 <label for="email">Email</label>
-                                <input type="text" class="input-style" formControlName="email" id="email">
+                                <input type="text" [ngClass]="{'valid-input': myForm.get('personalInfo.email')?.valid}"
+                                    class="input-style" formControlName="email" id="email">
                                 @if (myForm.get('personalInfo.email')?.touched &&
                                 myForm.get('personalInfo.email')?.invalid) {
                                 <small>This field is required</small>
@@ -40,7 +44,9 @@
                         <div class="row">
                             <div class="col-12">
                                 <label for="phone">Phone</label>
-                                <input type="number" class="input-style" formControlName="phone" id="phone">
+                                <input type="number"
+                                    [ngClass]="{'valid-input': myForm.get('personalInfo.phone')?.valid}"
+                                    class="input-style" formControlName="phone" id="phone">
                                 @if (myForm.get('personalInfo.phone')?.touched &&
                                 myForm.get('personalInfo.phone')?.invalid) {
                                 <small>This field is required</small>
@@ -57,7 +63,8 @@
                         <div class="row">
                             <div class="col-12">
                                 <label for="country">Country</label>
-                                <input type="text" class="input-style" formControlName="country" id="country">
+                                <input type="text" [ngClass]="{'valid-input': myForm.get('addressInfo.country')?.valid}"
+                                    class="input-style" formControlName="country" id="country">
                                 @if (myForm.get('addressInfo.country')?.touched &&
                                 myForm.get('addressInfo.country')?.invalid) {
                                 <small>This field is required</small>
@@ -67,7 +74,8 @@
                         <div class="row">
                             <div class="col-12">
                                 <label for="city">City</label>
-                                <input type="text" class="input-style" formControlName="city" id="city">
+                                <input type="text" [ngClass]="{'valid-input': myForm.get('addressInfo.city')?.valid}"
+                                    class="input-style" formControlName="city" id="city">
                                 @if (myForm.get('addressInfo.city')?.touched &&
                                 myForm.get('addressInfo.city')?.invalid) {
                                 <small>This field is required</small>
@@ -77,7 +85,8 @@
                         <div class="row">
                             <div class="col-12">
                                 <label for="street">Street</label>
-                                <input type="text" class="input-style" formControlName="street" id="street">
+                                <input type="text" [ngClass]="{'valid-input': myForm.get('addressInfo.street')?.valid}"
+                                    class="input-style" formControlName="street" id="street">
                                 @if (myForm.get('addressInfo.street')?.touched &&
                                 myForm.get('addressInfo.street')?.invalid) {
                                 <small>This field is required</small>
@@ -87,7 +96,32 @@
                     </div>
                     }
                     @if (step === 3) {
-                    <input type="text">
+                    <div formGroupName="dateTimeInfo">
+
+                        <div class="row g-2">
+                            <div class="col-12 col-sm-6">
+                                <label for="date">Date</label>
+                                <p-calendar id="date"
+                                    [ngClass]="{'valid-calendar': myForm.get('dateTimeInfo.date')?.valid}"
+                                    class="custom-calendar" formControlName="date" />
+                                @if (myForm.get('dateTimeInfo.date')?.touched &&
+                                myForm.get('dateTimeInfo.date')?.invalid) {
+                                <small>This field is required</small>
+                                }
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <label for="time">Time</label>
+                                <p-calendar [timeOnly]="true" id="time"
+                                    [ngClass]="{'valid-calendar': myForm.get('dateTimeInfo.time')?.valid}"
+                                    formControlName="time" class="custom-calendar" />
+                                @if (myForm.get('dateTimeInfo.time')?.touched &&
+                                myForm.get('dateTimeInfo.time')?.invalid) {
+                                <small>This field is required</small>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
                     }
 
                     <div class="button-container">

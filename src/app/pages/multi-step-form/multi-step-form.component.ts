@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CalendarModule } from 'primeng/calendar'
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-multi-step-form',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CalendarModule, NgClass],
   templateUrl: './multi-step-form.component.html',
   styleUrl: './multi-step-form.component.scss'
 })
 export class MultiStepFormComponent implements OnInit {
-  step: number = 1
+  step: number = 3
   myForm!: FormGroup;
 
   constructor(private formBuilder: FormBuilder) { }
@@ -30,6 +32,11 @@ export class MultiStepFormComponent implements OnInit {
         country: ['', Validators.required],
         city: ['', Validators.required],
         street: ['', Validators.required]
+      }),
+      dateTimeInfo: this.formBuilder.group({
+        date: ['', Validators.required],
+        time: ['', Validators.required],
+
       })
     });
   }
@@ -59,6 +66,8 @@ export class MultiStepFormComponent implements OnInit {
     } else if (this.step === 3) {
       if (this.myForm.valid) {
         this.onSubmit();
+      } else {
+        this.markFormGroupTouched(this.myForm.get('dateTimeInfo') as FormGroup);
       }
     }
   }
