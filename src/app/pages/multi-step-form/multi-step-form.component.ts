@@ -2,17 +2,31 @@ import { Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CalendarModule } from 'primeng/calendar'
 import { NgClass } from '@angular/common';
+import { trigger, style, transition, animate } from '@angular/animations';
+
 
 @Component({
   selector: 'app-multi-step-form',
   standalone: true,
   imports: [ReactiveFormsModule, CalendarModule, NgClass],
   templateUrl: './multi-step-form.component.html',
-  styleUrl: './multi-step-form.component.scss'
+  styleUrl: './multi-step-form.component.scss',
+  animations: [
+    trigger('listAnimation', [
+      transition(':enter', [
+        style({ height: '0px', opacity: 0 }),
+        animate('0.5s ease-in-out', style({ height: '*', opacity: 1 }))
+      ]),
+      transition(':leave', [
+        animate('0.5s ease-in-out', style({ height: '0px', opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class MultiStepFormComponent implements OnInit {
-  step: number = 3
+  step: number = 1;
   myForm!: FormGroup;
+  showThanks: boolean = false;
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -36,14 +50,40 @@ export class MultiStepFormComponent implements OnInit {
       dateTimeInfo: this.formBuilder.group({
         date: ['', Validators.required],
         time: ['', Validators.required],
-
       })
     });
   }
 
   onSubmit() {
-    console.log(this.myForm.value);
+    const formData = this.myForm.value;
+
+    const date = formData.dateTimeInfo.date
+      ? formData.dateTimeInfo.date.toISOString().split('T')[0]
+      : null;
+
+    const time = formData.dateTimeInfo.time
+      ? formData.dateTimeInfo.time.toTimeString().split(' ')[0]
+      : null;
+
+    const formattedData = {
+      ...formData,
+      dateTimeInfo: {
+        date,
+        time
+      }
+    };
+
+    console.log(formattedData);
+
+    this.showThanks = true;
+
+    setTimeout(() => {
+      this.myForm.reset();
+      this.showThanks = false;
+      this.step = 1;
+    }, 2500)
   }
+
   onBack() {
     this.step--;
   }
@@ -77,7 +117,5 @@ export class MultiStepFormComponent implements OnInit {
       control.markAsTouched();
     })
   }
-
-
 
 }

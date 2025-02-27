@@ -20,9 +20,16 @@
             .form-content {
                 width: 100%;
                 padding: 30px 70px;
+                transition: all 0.7s ease-in-out;
+                animation: smoothAppear 0.8s ease-out forwards;
 
                 .custom-row {
                     display: flex;
+                }
+
+                label {
+                    color: rgb(48, 48, 48);
+                    margin: 5px 0px;
                 }
 
                 .input-style {
@@ -30,7 +37,8 @@
                     height: 35px;
                     width: 100%;
                     padding: 0 10px;
-                    border: 1px solid black;
+                    border: 1px solid rgb(167, 167, 167);
+                    color: rgb(48, 48, 48);
                     outline: none;
                 }
 
@@ -51,19 +59,26 @@
                         height: 35px;
                         color: white;
                         width: 115px;
+
                     }
 
                     .back-button {
                         background-color: rgb(212, 0, 0);
+                        outline-color: yellow;
                     }
 
                     .next-button {
                         background-color: rgb(0, 148, 0);
+                        outline-color: greenyellow;
                     }
                 }
 
                 small {
                     color: red;
+                }
+
+                .thanks-div {
+                    animation: smoothAppear 0.8s ease-out forwards;
                 }
 
                 ::ng-deep {
@@ -73,7 +88,8 @@
                         }
 
                         input {
-                            border: 1px solid black;
+                            border: 1px solid rgb(167, 167, 167);
+                            color: rgb(48, 48, 48);
                             width: 100%;
                             box-shadow: none;
                             padding: 0 10px;
@@ -92,5 +108,25 @@
                 }
             }
         }
+    }
+}
+
+@keyframes smoothAppear {
+    from {
+        transform: translateY(-50px);
+    }
+
+    to {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
     }
 }

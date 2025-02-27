@@ -1,12 +1,15 @@
 <div class="container-fluid main">
     <div class="custom-container">
-        <div class="form-div">
+        <div class="form-div" @listAnimation>
             <form [formGroup]="myForm">
                 <div class="steps-container">
 
                 </div>
                 <div class="form-content">
+                    @if(!showThanks){
+
                     <h4 class="text-center">Enter values below:</h4>
+
                     @if (step === 1) {
                     <div formGroupName="personalInfo">
                         <div class="row g-2">
@@ -138,6 +141,13 @@
                             }
                         </button>
                     </div>
+                    }
+                    @if (showThanks) {
+                    <div class="thanks-div d-flex flex-column align-items-center py-5">
+                        <h3>Thank You!</h3>
+                        <p>Form has been submitted.</p>
+                    </div>
+                    }
 
                 </div>
             </form>
