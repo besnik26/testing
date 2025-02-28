@@ -2,9 +2,15 @@
     <div class="custom-container">
         <div class="form-div" @listAnimation>
             <form [formGroup]="myForm">
-                <div class="steps-container">
+                @if (!showThanks) {
 
-                </div>
+                    <div class="steps-container">
+                        <div [ngClass]="{'valid-step': step > 1, 'active-step': step === 1}" class="step d-flex justify-content-center align-items-center">1</div>
+                        <div [ngClass]="{'valid-step': step > 2, 'active-step': step === 2}" class="step d-flex justify-content-center align-items-center">2</div>
+                        <div [ngClass]="{'valid-step': myForm.get('dateTimeInfo')?.valid && step > 2, 'active-step': step === 3 && myForm.get('dateTimeInfo')?.invalid}" class="step d-flex justify-content-center align-items-center">3</div>
+    
+                    </div>
+                }
                 <div class="form-content">
                     @if(!showThanks){
 

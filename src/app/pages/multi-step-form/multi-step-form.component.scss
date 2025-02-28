@@ -1,7 +1,7 @@
 .main {
     display: flex;
     justify-content: center;
-    margin-top: 200px;
+    margin-top: 150px;
 
     .custom-container {
         width: 100%;
@@ -17,9 +17,38 @@
             border-radius: 35px;
             color: black;
 
+            .steps-container{
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                column-gap: 30px;
+                margin: 40px 0 20px 0;
+                animation: smoothAppear 0.8s ease-out forwards;
+
+                .step{
+                    height: 32px;
+                    width: 32px;
+                    border: 2px solid black;
+                    border-radius: 50%;
+                    font-weight: 500;
+                }
+                .valid-step{
+                    background-color: rgb(0, 188, 0);
+                    border: 2px solid rgb(0, 188, 0);
+                    color: white;
+                }
+                .active-step{
+                    border: 2px solid rgb(0, 188, 0);
+                    color:rgb(0, 188, 0);
+                    background-color: rgba(0, 188, 0, 5%);
+
+                }
+
+            }
+
             .form-content {
                 width: 100%;
-                padding: 30px 70px;
+                padding: 0px 70px;
                 transition: all 0.7s ease-in-out;
                 animation: smoothAppear 0.8s ease-out forwards;
 

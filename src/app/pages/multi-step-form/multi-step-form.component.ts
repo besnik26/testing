@@ -4,7 +4,6 @@ import { CalendarModule } from 'primeng/calendar'
 import { NgClass } from '@angular/common';
 import { trigger, style, transition, animate } from '@angular/animations';
 
-
 @Component({
   selector: 'app-multi-step-form',
   standalone: true,
@@ -39,7 +38,7 @@ export class MultiStepFormComponent implements OnInit {
       personalInfo: this.formBuilder.group({
         name: ['', Validators.required],
         surname: ['', Validators.required],
-        email: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
         phone: ['', Validators.required]
       }),
       addressInfo: this.formBuilder.group({
@@ -74,14 +73,7 @@ export class MultiStepFormComponent implements OnInit {
     };
 
     console.log(formattedData);
-
-    this.showThanks = true;
-
-    setTimeout(() => {
-      this.myForm.reset();
-      this.showThanks = false;
-      this.step = 1;
-    }, 2500)
+    this.resetForm();
   }
 
   onBack() {
@@ -110,6 +102,16 @@ export class MultiStepFormComponent implements OnInit {
         this.markFormGroupTouched(this.myForm.get('dateTimeInfo') as FormGroup);
       }
     }
+  }
+
+  resetForm(){
+    this.showThanks = true;
+
+    setTimeout(() => {
+      this.myForm.reset();
+      this.showThanks = false;
+      this.step = 1;
+    }, 2500)
   }
 
   markFormGroupTouched(formGroup: FormGroup) {
