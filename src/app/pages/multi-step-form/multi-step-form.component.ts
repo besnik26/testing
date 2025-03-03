@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { CalendarModule } from 'primeng/calendar'
 import { NgClass } from '@angular/common';
 import { trigger, style, transition, animate } from '@angular/animations';
@@ -49,7 +49,8 @@ export class MultiStepFormComponent implements OnInit {
       dateTimeInfo: this.formBuilder.group({
         date: ['', Validators.required],
         time: ['', Validators.required],
-      })
+      }),
+      education: this.formBuilder.array([])
     });
   }
 
@@ -104,7 +105,7 @@ export class MultiStepFormComponent implements OnInit {
     }
   }
 
-  resetForm(){
+  resetForm() {
     this.showThanks = true;
 
     setTimeout(() => {
@@ -117,6 +118,17 @@ export class MultiStepFormComponent implements OnInit {
   markFormGroupTouched(formGroup: FormGroup) {
     Object.values(formGroup.controls).forEach(control => {
       control.markAsTouched();
+    })
+  }
+
+  get education(): FormArray {
+    return this.myForm.get('education') as FormArray;
+  }
+
+  addEducation() {
+    const educationFormGroup = this.formBuilder.group({
+      title: [''],
+      date: ['']
     })
   }
 
