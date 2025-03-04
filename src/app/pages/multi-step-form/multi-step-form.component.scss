@@ -112,7 +112,7 @@
 
                 ::ng-deep {
                     .custom-calendar {
-                        span {
+                        .p-calendar {
                             width: 100%;
                         }
 
@@ -126,14 +126,32 @@
                             height: 35px;
                         }
                     }
-
                     .valid-calendar {
-
                         input {
                             border: 1px solid rgb(0, 172, 0);
-
                         }
                     }
+                }
+
+                .addButton{
+                    border-radius: 5px;
+                    border: 2px solid rgb(0, 188, 0);
+                    color:rgb(0, 188, 0);
+                    background-color: rgba(0, 188, 0, 5%);
+                    padding: 0 5px;
+                }
+                .removeButton{
+                    border: 2px solid rgb(212, 0, 0);
+                    color: rgb(212, 0, 0);
+                    background-color: rgba(212, 0, 0, 5%);
+                    border-radius: 5px;
+                    // padding:0px 5px;
+                    height: 20px;
+                    width: 20px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
                 }
             }
         }

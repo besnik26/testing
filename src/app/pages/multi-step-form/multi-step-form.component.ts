@@ -23,7 +23,7 @@ import { trigger, style, transition, animate } from '@angular/animations';
   ]
 })
 export class MultiStepFormComponent implements OnInit {
-  step: number = 1;
+  step: number = 3;
   myForm!: FormGroup;
   showThanks: boolean = false;
 
@@ -50,7 +50,7 @@ export class MultiStepFormComponent implements OnInit {
         date: ['', Validators.required],
         time: ['', Validators.required],
       }),
-      education: this.formBuilder.array([])
+      experience: this.formBuilder.array([])
     });
   }
 
@@ -72,7 +72,6 @@ export class MultiStepFormComponent implements OnInit {
         time
       }
     };
-
     console.log(formattedData);
     this.resetForm();
   }
@@ -91,6 +90,7 @@ export class MultiStepFormComponent implements OnInit {
       }
     } else if (this.step === 2) {
       if (this.myForm.get('addressInfo')?.valid) {
+        this.addExperience();
         this.step++;
       }
       else {
@@ -121,15 +121,25 @@ export class MultiStepFormComponent implements OnInit {
     })
   }
 
-  get education(): FormArray {
-    return this.myForm.get('education') as FormArray;
+  get experienceGroup(): FormArray {
+    return this.myForm.get('experience') as FormArray;
   }
 
-  addEducation() {
-    const educationFormGroup = this.formBuilder.group({
+  addExperience() {
+    const experienceFormGroup = this.formBuilder.group({
       title: [''],
-      date: ['']
+      dateFrom: [''],
+      dateTo: ['']
+
     })
+    this.experienceGroup.push(experienceFormGroup);
+  }
+
+  removeExperience(index: number) {
+    console.log('Removing experience at index:', index);
+    const experiences = this.myForm.get('experience') as FormArray;
+    experiences.removeAt(index);
+    console.log('Remaining experiences:', experiences.value);
   }
 
 }
