@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormArray, AbstractControl } from '@angular/forms';
 import { CalendarModule } from 'primeng/calendar'
 import { NgClass } from '@angular/common';
 import { trigger, style, transition, animate } from '@angular/animations';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-multi-step-form',
   standalone: true,
-  imports: [ReactiveFormsModule, CalendarModule, NgClass],
+  imports: [ReactiveFormsModule, CalendarModule, NgClass, CommonModule],
   templateUrl: './multi-step-form.component.html',
   styleUrl: './multi-step-form.component.scss',
   animations: [
@@ -23,7 +24,7 @@ import { trigger, style, transition, animate } from '@angular/animations';
   ]
 })
 export class MultiStepFormComponent implements OnInit {
-  step: number = 3;
+  step: number = 1;
   myForm!: FormGroup;
   showThanks: boolean = false;
 
@@ -31,6 +32,7 @@ export class MultiStepFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
+    this.addExperience();
   }
 
   initForm() {
@@ -56,25 +58,45 @@ export class MultiStepFormComponent implements OnInit {
 
   onSubmit() {
     const formData = this.myForm.value;
-
-    const date = formData.dateTimeInfo.date
+  
+      const date = formData.dateTimeInfo.date
       ? formData.dateTimeInfo.date.toISOString().split('T')[0]
       : null;
 
     const time = formData.dateTimeInfo.time
       ? formData.dateTimeInfo.time.toTimeString().split(' ')[0]
       : null;
-
-    const formattedData = {
+  
+    
+    const formattedExperience = formData.experience.map((exp: any) => ({
+      ...exp,
+      dateFrom: exp.dateFrom
+        ? new Date(exp.dateFrom).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+          })
+        : null,
+      dateTo: exp.dateTo
+        ? new Date(exp.dateTo).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+          })
+        : null,
+    }));
+  
+    const formattedFormData = {
       ...formData,
       dateTimeInfo: {
         date,
         time
-      }
+      },
+      experience: formattedExperience,
     };
-    console.log(formattedData);
+  
+    console.log(formattedFormData);
     this.resetForm();
   }
+  
 
   onBack() {
     this.step--;
@@ -90,7 +112,6 @@ export class MultiStepFormComponent implements OnInit {
       }
     } else if (this.step === 2) {
       if (this.myForm.get('addressInfo')?.valid) {
-        this.addExperience();
         this.step++;
       }
       else {
@@ -101,6 +122,7 @@ export class MultiStepFormComponent implements OnInit {
         this.onSubmit();
       } else {
         this.markFormGroupTouched(this.myForm.get('dateTimeInfo') as FormGroup);
+        this.markFormGroupsArrayTouched();
       }
     }
   }
@@ -121,25 +143,33 @@ export class MultiStepFormComponent implements OnInit {
     })
   }
 
+  markFormGroupsArrayTouched() {
+    const formGroupsArray = this.myForm.get('experience') as FormArray;
+
+    formGroupsArray.controls.forEach((control: AbstractControl) => {
+      if (control instanceof FormGroup) {
+        this.markFormGroupTouched(control);
+      }
+    });
+  }
+
   get experienceGroup(): FormArray {
     return this.myForm.get('experience') as FormArray;
   }
 
   addExperience() {
     const experienceFormGroup = this.formBuilder.group({
-      title: [''],
-      dateFrom: [''],
-      dateTo: ['']
+      title: ['',Validators.required],
+      dateFrom: ['',Validators.required],
+      dateTo: ['',Validators.required]
 
     })
     this.experienceGroup.push(experienceFormGroup);
   }
 
   removeExperience(index: number) {
-    console.log('Removing experience at index:', index);
     const experiences = this.myForm.get('experience') as FormArray;
     experiences.removeAt(index);
-    console.log('Remaining experiences:', experiences.value);
   }
 
 }

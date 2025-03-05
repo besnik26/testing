@@ -110,7 +110,7 @@
                         <div class="row g-2">
                             <div class="col-12 col-sm-6">
                                 <label for="date">Date</label>
-                                <p-calendar id="date"
+                                <p-calendar id="date" [readonlyInput]="true"
                                     [ngClass]="{'valid-calendar': myForm.get('dateTimeInfo.date')?.valid}"
                                     class="custom-calendar" formControlName="date" />
                                 @if (myForm.get('dateTimeInfo.date')?.touched &&
@@ -120,7 +120,7 @@
                             </div>
                             <div class="col-12 col-sm-6">
                                 <label for="time">Time</label>
-                                <p-calendar [timeOnly]="true" id="time"
+                                <p-calendar [timeOnly]="true" id="time" [readonlyInput]="true"
                                     [ngClass]="{'valid-calendar': myForm.get('dateTimeInfo.time')?.valid}"
                                     formControlName="time" class="custom-calendar" />
                                 @if (myForm.get('dateTimeInfo.time')?.touched &&
@@ -132,21 +132,30 @@
                         </div>
                     </div>
                     <div class="mt-4 d-flex justify-content-between align-items-center">
-                        <label class="fw-bold">Add Experience:</label>
+                        <label class="fw-bold">Add Work Experience:</label>
                         <button class="addButton" (click)="addExperience()">Add +</button>
                     </div>
                     
                     <div formArrayName="experience">
-                        @for (index of experienceGroup.controls.keys(); track $index) {
-                            <div [formGroupName]="$index">
+                        <div *ngFor="let group of experienceGroup.controls; let i = index">
+                            <div [formGroupName]="i">
                                 <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <p class="fw-bold mb-0">{{$index + 1 + ")"}}</p>
-                                    <button (click)="removeExperience($index)" class="removeButton fw-bolder">-</button>
+                                    <p class="fw-bold mb-0">{{i + 1 + "."}}</p>
+                                    @if (i !== 0 ) {
+                                        <button (click)="removeExperience(i)" class="removeButton ">X</button>
+                                    }
                                 </div>
                                 <div class="row" >
                                     <div class="col-12">
-                                        <label for="expTitle">Title</label>
-                                        <input type="text" class="input-style" id="expTitle" formControlName="title">
+                                        <label for="expTitle">Title/Position</label>
+                                        <input type="text" class="input-style" 
+                                        id="expTitle" 
+                                        formControlName="title" 
+                                        [ngClass]="{'valid-input': group.get('title')?.valid}" >
+                                        @if (group.get('title')?.touched &&
+                                        group.get('title')?.invalid) {
+                                        <small>This field is required</small>
+                                        }
                                     </div>
                                     
                                 </div>
@@ -159,7 +168,13 @@
                                             dateFormat="mm/yy" 
                                             [readonlyInput]="true"
                                             class="custom-calendar"
-                                            id="dateFrom" />
+                                            id="dateFrom" 
+                                            [ngClass]="{'valid-calendar': group.get('dateFrom')?.valid}"
+                                        />
+                                        @if (group.get('dateFrom')?.touched &&
+                                        group.get('dateFrom')?.invalid) {
+                                        <small>This field is required</small>
+                                        }
                                     </div>
                                     <div class="col-12 col-sm-6">
                                         <label for="dateTo">Date to</label>
@@ -169,11 +184,19 @@
                                             dateFormat="mm/yy" 
                                             [readonlyInput]="true"
                                             class="custom-calendar"
-                                            id="dateTo" />
+                                            id="dateTo" 
+                                            [ngClass]="{'valid-calendar': group.get('dateTo')?.valid}"
+
+                                        />
+                                        @if (group.get('dateTo')?.touched &&
+                                        group.get('dateTo')?.invalid) {
+                                        <small>This field is required</small>
+                                        }
                                     </div>
                                 </div>
+
                             </div>
-                        }
+                        </div>
                     </div>
                     }
 
