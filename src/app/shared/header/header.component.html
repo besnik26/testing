@@ -1,16 +1,24 @@
 <div class="main">
-    <h5 routerLink="/home">
-        Counter:{{count$ | async}}
-    </h5>
-    <h5 routerLink="/products">Products</h5>
+    <div class="hamburger" (click)="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="nav" [ngClass]="{ 'show-menu': menuOpen }">
 
-    <h5 routerLink="/animations">Animations</h5>
+        <p routerLink="/home" (click)="closeDropdown()">
+            Counter:{{count$ | async}}
+        </p>
+        <p routerLink="/products" (click)="closeDropdown()">Products</p>
 
-    <h5 routerLink="/cart">Cart: {{(products$ | async)?.length}}</h5>
+        <p routerLink="/animations" (click)="closeDropdown()">Animations</p>
 
-    <h5 routerLink="/add-to-list">Add to list</h5>
+        <p routerLink="/cart" (click)="closeDropdown()">Cart: {{(products$ | async)?.length}}</p>
 
-    <h5 routerLink="/multi-step-form">Multi step form</h5>
+        <p routerLink="/add-to-list" (click)="closeDropdown()">Add to list</p>
 
-    <button (click)="toggleTheme()">Toggle Theme</button>
+        <p routerLink="/multi-step-form" (click)="closeDropdown()">Multi step form</p>
+
+        <button (click)="toggleTheme()">Toggle Theme</button>
+    </div>
 </div>

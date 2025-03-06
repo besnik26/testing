@@ -48,7 +48,6 @@ export class AddToListComponent implements OnInit {
     if (this.myForm.valid) {
       this.listArray.push(this.myForm.get('input')?.value);
       this.myForm.reset();
-      console.log(this.listArray);
     }
   }
   handleDelete(index: number) {
