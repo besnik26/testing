@@ -1,6 +1,6 @@
-import { Component, HostListener, ElementRef } from '@angular/core';
+import { Component, HostListener, ElementRef, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { AppState } from '../../states/app.state';
 import { selectCount } from '../../states/counter/counter.selector';
 import { AsyncPipe } from '@angular/common';
@@ -17,14 +17,26 @@ import { CommonModule } from '@angular/common';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, OnDestroy{
   count$: Observable<number>;
   products$: Observable<IProduct[]>
   menuOpen: boolean = false;
+  theme!: string;
+  private themeSubscription!: Subscription;
 
   constructor(private store: Store<AppState>, private themeService: ThemeService, private elementRef: ElementRef,) {
     this.count$ = store.select(selectCount)
     this.products$ = store.select(selectCartProducts)
+  }
+
+  ngOnInit(): void {
+    this.themeSubscription = this.themeService.theme$.subscribe(theme => {
+      this.theme = theme;
+    });
+  }
+  
+  ngOnDestroy(): void {
+    this.themeSubscription.unsubscribe();
   }
 
   @HostListener('document:click', ['$event'])

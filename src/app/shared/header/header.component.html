@@ -5,20 +5,29 @@
         <span></span>
     </div>
     <div class="nav" [ngClass]="{ 'show-menu': menuOpen }">
+        <div class="dropdown" [ngClass]="{'dark-theme': theme === 'dark'}">
+            <p routerLink="/home" (click)="closeDropdown()">
+                Counter:{{count$ | async}}
+            </p>
+            <p routerLink="/products" (click)="closeDropdown()">Products</p>
+    
+            <p routerLink="/animations" (click)="closeDropdown()">Animations</p>
+    
+            <p routerLink="/cart" (click)="closeDropdown()">Cart: {{(products$ | async)?.length}}</p>
+    
+            <p routerLink="/add-to-list" (click)="closeDropdown()">Add to list</p>
+    
+            <p routerLink="/multi-step-form" (click)="closeDropdown()">Multi step form</p>
+    
+            <div class="theme" (click)="toggleTheme()">
+                @if (theme==='dark') {
+                    <img src="../../../assets/images/icons/sun.svg" alt="sun">
+                }@else {
+                    <img src="../../../assets/images/icons/moon.svg" alt="moon">
+                }
+                
+            </div>
+        </div>
 
-        <p routerLink="/home" (click)="closeDropdown()">
-            Counter:{{count$ | async}}
-        </p>
-        <p routerLink="/products" (click)="closeDropdown()">Products</p>
-
-        <p routerLink="/animations" (click)="closeDropdown()">Animations</p>
-
-        <p routerLink="/cart" (click)="closeDropdown()">Cart: {{(products$ | async)?.length}}</p>
-
-        <p routerLink="/add-to-list" (click)="closeDropdown()">Add to list</p>
-
-        <p routerLink="/multi-step-form" (click)="closeDropdown()">Multi step form</p>
-
-        <button (click)="toggleTheme()">Toggle Theme</button>
     </div>
 </div>
