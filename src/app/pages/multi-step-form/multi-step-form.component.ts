@@ -164,7 +164,9 @@ export class MultiStepFormComponent implements OnInit {
       dateTo: ['',Validators.required]
 
     })
-    this.experienceGroup.push(experienceFormGroup);
+    if(this.experienceGroup.length < 15){
+      this.experienceGroup.push(experienceFormGroup);
+    }
   }
 
   removeExperience(index: number) {
